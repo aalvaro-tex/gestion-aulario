@@ -1,0 +1,17 @@
+package com.aulario.entities;
+
+import java.io.Serializable;
+
+public class PuestoEstudio_PK implements Serializable {
+	
+	private Long num_puesto;
+	private Long num_sala;
+	public PuestoEstudio_PK(Long num_puesto, Long num_sala) {
+		super();
+		this.num_puesto = num_puesto;
+		this.num_sala = num_sala;
+	}
+	
+	
+
+}

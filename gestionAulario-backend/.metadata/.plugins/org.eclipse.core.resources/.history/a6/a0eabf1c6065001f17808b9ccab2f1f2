@@ -1,0 +1,7 @@
+package com.aulario.services;
+
+import com.aulario.repositories.PuestoEstudioRepository;
+
+public class PuestoEstudio implements PuestoEstudioRepository{
+
+}

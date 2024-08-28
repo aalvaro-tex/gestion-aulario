@@ -1,0 +1,5 @@
+package com.aulario.entities;
+
+public class Sala {
+
+}

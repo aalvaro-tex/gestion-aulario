@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.Serializable"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.IdClass"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.aulario.entities.Estudiante"/>
+    <fullyQualifiedTypeName name="com.aulario.entities.Descanso"/>
+    <fullyQualifiedTypeName name="com.aulario.entities.Sala"/>
+    <fullyQualifiedTypeName name="com.aulario.entities.PuestoEstudio"/>
+    <fullyQualifiedTypeName name="com.aulario.repositories.EstudianteHacerDescanso"/>
+    <fullyQualifiedTypeName name="com.aulario.entities.PKs.EstudianteHacerDescanso_PK"/>
+    <fullyQualifiedTypeName name="com.aulario.entities.EstudianteReservarPuestoEstudio"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.aulario.repositories.EstudianteRepository"/>
+    <fullyQualifiedTypeName name="com.aulario.repositories.DescansoRepository"/>
+    <fullyQualifiedTypeName name="com.aulario.repositories.SalaRepository"/>
+    <fullyQualifiedTypeName name="com.aulario.repositories.PuestoEstudioRepository"/>
+    <fullyQualifiedTypeName name="com.aulario.repositories.EstudianteHacerDescansoRepository"/>
+    <fullyQualifiedTypeName name="com.aulario.repositories.EstudianteReservarPuestoEstudioRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="java.net.URI"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatusCode"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+</qualifiedTypeNameHistroy>
