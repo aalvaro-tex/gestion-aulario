@@ -11,5 +11,19 @@ public class EstudianteHacerDescanso_PK implements Serializable {
 		this.nie = nie;
 		this.id = id;
 	}
+	public String getNie() {
+		return nie;
+	}
+	public void setNie(String nie) {
+		this.nie = nie;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 
 }

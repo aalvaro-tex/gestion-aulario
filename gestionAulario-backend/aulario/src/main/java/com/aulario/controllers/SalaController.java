@@ -15,39 +15,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aulario.entities.Estudiante;
-import com.aulario.services.EstudianteService;
+import com.aulario.entities.Sala;
+import com.aulario.services.SalaService;
 
 @RestController
-@RequestMapping("/estudiantes")
+@RequestMapping("/salas")
 @CrossOrigin
-public class EstudianteController {
+public class SalaController {
 
 	@Autowired
-	private EstudianteService es;
+	private SalaService ss;
 	
-	// recupera todos los estudiantes
+	// recupera todas las salas
 	@GetMapping
-	private ResponseEntity<List<Estudiante>> getAllEstudiantes(){
-		return ResponseEntity.ok(es.findAll());
+	private ResponseEntity<List<Sala>> getAllSalas(){
+		return ResponseEntity.ok(ss.findAll());
 	}
 	
-	// añade un estudiante
+	// añade una sala
 	@PostMapping
-	private ResponseEntity<Estudiante> addEstudiante(@RequestBody Estudiante e){
+	private ResponseEntity<Sala> addSala(@RequestBody Sala s){
 		try {
-			e.setNombre(e.getNombre().toLowerCase());
-			Estudiante e_guardado = es.save(e);
-			return ResponseEntity.created(new URI("/estudiantes/"+e_guardado.getNie())).body(e_guardado);
+			Sala s_guardado = ss.save(s);
+			return ResponseEntity.created(new URI("/descansos/"+s_guardado.getNum_sala())).body(s_guardado);
 		}catch(Exception ex) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); 
 		}
 	}
 	
-	// elimina un estudiante dado su NIE
-	@DeleteMapping(value="delete/{Nie}")
-	private ResponseEntity<Boolean> deleteEstudiante(@PathVariable String Nie){
-		es.deleteById(Nie);
-		return ResponseEntity.ok(!(es.findById(Nie)!=null));
+	// elimina una sala dado su numero de sala
+	@DeleteMapping(value="delete/{numSala}")
+	private ResponseEntity<Boolean> deleteSala(@PathVariable Long numSala){
+		ss.deleteById(numSala);
+		return ResponseEntity.ok(!(ss.findById(numSala)!=null));
 	}
 }

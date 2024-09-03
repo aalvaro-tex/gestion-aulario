@@ -10,11 +10,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.stereotype.Service;
 
 import com.aulario.entities.PuestoEstudio;
 import com.aulario.entities.PKs.PuestoEstudio_PK;
 import com.aulario.repositories.PuestoEstudioRepository;
 
+@Service
 public class PuestoEstudioService implements PuestoEstudioRepository{
 
 	@Autowired

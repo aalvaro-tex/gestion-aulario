@@ -1,11 +1,14 @@
 package com.aulario.entities;
+import com.aulario.entities.PKs.EstudianteReservarPuesto_PK;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="ESTUDIANTE_RESERVAR_PUESTO_ESTUDIO")
+@IdClass(EstudianteReservarPuesto_PK.class)
 public class EstudianteReservarPuestoEstudio {
 	
 	// PK compuesta

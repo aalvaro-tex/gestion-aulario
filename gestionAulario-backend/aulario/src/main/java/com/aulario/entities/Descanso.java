@@ -12,13 +12,13 @@ public class Descanso {
 	@Id
 	private Long id;
 	// Atributos
-	private String tramo;
-	private String dia;
-	public Descanso(Long id, String tramo, String dia) {
+	private String nombre;
+	private int duracion;
+	public Descanso(Long id, String nombre, int duracion) {
 		super();
 		this.id = id;
-		this.tramo = tramo;
-		this.dia = dia;
+		this.nombre = nombre;
+		this.duracion = duracion;
 	}
 	public Descanso() {
 		super();
@@ -29,18 +29,19 @@ public class Descanso {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getTramo() {
-		return tramo;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setTramo(String tramo) {
-		this.tramo = tramo;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getDia() {
-		return dia;
+	public int getDuracion() {
+		return duracion;
 	}
-	public void setDia(String dia) {
-		this.dia = dia;
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
 	}
+	
 	
 	
 }

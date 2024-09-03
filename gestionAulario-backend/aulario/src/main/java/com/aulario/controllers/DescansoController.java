@@ -15,39 +15,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aulario.entities.Estudiante;
-import com.aulario.services.EstudianteService;
+import com.aulario.entities.Descanso;
+import com.aulario.services.DescansoService;
 
 @RestController
-@RequestMapping("/estudiantes")
+@RequestMapping("/descansos")
 @CrossOrigin
-public class EstudianteController {
-
-	@Autowired
-	private EstudianteService es;
+public class DescansoController {
 	
-	// recupera todos los estudiantes
+	@Autowired
+	private DescansoService ds;
+	
+	// recupera todos los descansos
 	@GetMapping
-	private ResponseEntity<List<Estudiante>> getAllEstudiantes(){
-		return ResponseEntity.ok(es.findAll());
+	private ResponseEntity<List<Descanso>> getAllDescansos(){
+		return ResponseEntity.ok(ds.findAll());
 	}
 	
-	// añade un estudiante
+	// añade un descanso
 	@PostMapping
-	private ResponseEntity<Estudiante> addEstudiante(@RequestBody Estudiante e){
+	private ResponseEntity<Descanso> addDescanso(@RequestBody Descanso d){
 		try {
-			e.setNombre(e.getNombre().toLowerCase());
-			Estudiante e_guardado = es.save(e);
-			return ResponseEntity.created(new URI("/estudiantes/"+e_guardado.getNie())).body(e_guardado);
+			d.setNombre(d.getNombre().toLowerCase());
+			Descanso d_guardado = ds.save(d);
+			return ResponseEntity.created(new URI("/descansos/"+d_guardado.getId())).body(d_guardado);
 		}catch(Exception ex) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); 
 		}
 	}
 	
-	// elimina un estudiante dado su NIE
-	@DeleteMapping(value="delete/{Nie}")
-	private ResponseEntity<Boolean> deleteEstudiante(@PathVariable String Nie){
-		es.deleteById(Nie);
-		return ResponseEntity.ok(!(es.findById(Nie)!=null));
+	// elimina un descanso dado su Id
+	@DeleteMapping(value="delete/{Id}")
+	private ResponseEntity<Boolean> deleteDescanso(@PathVariable Long Id){
+		ds.deleteById(Id);
+		return ResponseEntity.ok(!(ds.findById(Id)!=null));
 	}
+
 }

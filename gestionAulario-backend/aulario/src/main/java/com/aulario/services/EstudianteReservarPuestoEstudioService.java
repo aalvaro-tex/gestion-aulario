@@ -10,15 +10,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.stereotype.Service;
 
 import com.aulario.entities.EstudianteReservarPuestoEstudio;
+import com.aulario.entities.PKs.EstudianteReservarPuesto_PK;
 import com.aulario.repositories.EstudianteReservarPuestoEstudioRepository;
 
+@Service
 public class EstudianteReservarPuestoEstudioService implements EstudianteReservarPuestoEstudioRepository{
 
 	@Autowired
 	private EstudianteReservarPuestoEstudioRepository erper;
-	
+
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
@@ -44,7 +47,7 @@ public class EstudianteReservarPuestoEstudioService implements EstudianteReserva
 	}
 
 	@Override
-	public void deleteAllByIdInBatch(Iterable<EstudianteReservarPuestoEstudio> ids) {
+	public void deleteAllByIdInBatch(Iterable<EstudianteReservarPuesto_PK> ids) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -56,19 +59,19 @@ public class EstudianteReservarPuestoEstudioService implements EstudianteReserva
 	}
 
 	@Override
-	public EstudianteReservarPuestoEstudio getOne(EstudianteReservarPuestoEstudio id) {
+	public EstudianteReservarPuestoEstudio getOne(EstudianteReservarPuesto_PK id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EstudianteReservarPuestoEstudio getById(EstudianteReservarPuestoEstudio id) {
+	public EstudianteReservarPuestoEstudio getById(EstudianteReservarPuesto_PK id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EstudianteReservarPuestoEstudio getReferenceById(EstudianteReservarPuestoEstudio id) {
+	public EstudianteReservarPuestoEstudio getReferenceById(EstudianteReservarPuesto_PK id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -98,7 +101,7 @@ public class EstudianteReservarPuestoEstudioService implements EstudianteReserva
 	}
 
 	@Override
-	public List<EstudianteReservarPuestoEstudio> findAllById(Iterable<EstudianteReservarPuestoEstudio> ids) {
+	public List<EstudianteReservarPuestoEstudio> findAllById(Iterable<EstudianteReservarPuesto_PK> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -110,13 +113,13 @@ public class EstudianteReservarPuestoEstudioService implements EstudianteReserva
 	}
 
 	@Override
-	public Optional<EstudianteReservarPuestoEstudio> findById(EstudianteReservarPuestoEstudio id) {
+	public Optional<EstudianteReservarPuestoEstudio> findById(EstudianteReservarPuesto_PK id) {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
 
 	@Override
-	public boolean existsById(EstudianteReservarPuestoEstudio id) {
+	public boolean existsById(EstudianteReservarPuesto_PK id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -128,7 +131,7 @@ public class EstudianteReservarPuestoEstudioService implements EstudianteReserva
 	}
 
 	@Override
-	public void deleteById(EstudianteReservarPuestoEstudio id) {
+	public void deleteById(EstudianteReservarPuesto_PK id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -140,7 +143,7 @@ public class EstudianteReservarPuestoEstudioService implements EstudianteReserva
 	}
 
 	@Override
-	public void deleteAllById(Iterable<? extends EstudianteReservarPuestoEstudio> ids) {
+	public void deleteAllById(Iterable<? extends EstudianteReservarPuesto_PK> ids) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -199,5 +202,6 @@ public class EstudianteReservarPuestoEstudioService implements EstudianteReserva
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }
