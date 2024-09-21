@@ -1,8 +1,10 @@
 package com.aulario.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -20,6 +22,9 @@ public class EstudianteService implements EstudianteRepository{
 
 	@Autowired
 	private EstudianteRepository er;
+	
+	private Logger log = Logger.getLogger(EstudianteHacerDescansoService.class.getName());
+
 	
 	@Override
 	public void flush() {
@@ -96,7 +101,8 @@ public class EstudianteService implements EstudianteRepository{
 	@Override
 	public List<Estudiante> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		log.info("Hay " + this.count() + " estudiantes registrados.");
+		return er.findAll();
 	}
 
 	@Override
@@ -199,6 +205,19 @@ public class EstudianteService implements EstudianteRepository{
 	public <S extends Estudiante, R> R findBy(Example<S> example, Function<FetchableFluentQuery<S>, R> queryFunction) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public List<Estudiante> findByNie(String nie) {
+		List<Estudiante> all = this.findAll();
+		List<Estudiante> encontrado = new ArrayList<Estudiante>();
+		for(Estudiante e : all) {
+			if(e.getNie().equalsIgnoreCase(nie)) {
+				encontrado.add(e);
+				log.info("Se ha encontrado el estudiante con NIE "+nie);
+			}
+		}
+		if(encontrado.isEmpty()) log.info("El estudiando con NIE " + nie +" no está registrado."); 
+		return encontrado;
 	}
 
 }

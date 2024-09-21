@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,33 +23,47 @@ import com.aulario.services.DescansoService;
 @RequestMapping("/descansos")
 @CrossOrigin
 public class DescansoController {
-	
+
 	@Autowired
 	private DescansoService ds;
-	
+
 	// recupera todos los descansos
 	@GetMapping
-	private ResponseEntity<List<Descanso>> getAllDescansos(){
+	private ResponseEntity<List<Descanso>> getAllDescansos() {
 		return ResponseEntity.ok(ds.findAll());
 	}
-	
+
+	// devuelve un descanso por nombre
+	@GetMapping(value = "/find-by-name/{nombre}")
+	private ResponseEntity<Descanso> getDescansoByName(@PathVariable String nombre) {
+		return ResponseEntity.ok(ds.findByNombre(nombre));
+	}
+
 	// añade un descanso
 	@PostMapping
-	private ResponseEntity<Descanso> addDescanso(@RequestBody Descanso d){
+	private ResponseEntity<Descanso> addDescanso(@RequestBody Descanso d) {
 		try {
-			d.setNombre(d.getNombre().toLowerCase());
+			d.setNombre(d.getNombre().toUpperCase());
 			Descanso d_guardado = ds.save(d);
-			return ResponseEntity.created(new URI("/descansos/"+d_guardado.getId())).body(d_guardado);
-		}catch(Exception ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); 
+			return ResponseEntity.created(new URI("/descansos/" + d_guardado.getNombre())).body(d_guardado);
+		} catch (Exception ex) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
+
 	// elimina un descanso dado su Id
-	@DeleteMapping(value="delete/{Id}")
-	private ResponseEntity<Boolean> deleteDescanso(@PathVariable Long Id){
-		ds.deleteById(Id);
-		return ResponseEntity.ok(!(ds.findById(Id)!=null));
+	@DeleteMapping(value = "delete/{nombre}")
+	private ResponseEntity<Boolean> deleteDescanso(@PathVariable String nombre) {
+		ds.deleteByName(nombre.toUpperCase());
+		return ResponseEntity.ok(!(ds.findByNombre(nombre) != null));
+	}
+
+	// actualiza la duracion de un descanso
+	@PutMapping(value = "edit/{nombre}")
+	private ResponseEntity<Boolean> updateDescansoDuracion(@PathVariable String nombre, @RequestBody int duracion) {
+		boolean worked = ds.editDuracion(nombre, duracion);
+		return ResponseEntity.ok(worked);
+
 	}
 
 }

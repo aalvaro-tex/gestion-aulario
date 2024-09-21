@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name="ESTUDIANTE_HACER_DESCANSO")
 public class EstudianteHacerDescanso {
 
-	// PK compuesta
+	// PK 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

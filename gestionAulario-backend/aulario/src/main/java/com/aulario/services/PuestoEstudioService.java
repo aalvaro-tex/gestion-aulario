@@ -1,8 +1,10 @@
 package com.aulario.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -13,7 +15,6 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Service;
 
 import com.aulario.entities.PuestoEstudio;
-import com.aulario.entities.PKs.PuestoEstudio_PK;
 import com.aulario.repositories.PuestoEstudioRepository;
 
 @Service
@@ -21,6 +22,9 @@ public class PuestoEstudioService implements PuestoEstudioRepository{
 
 	@Autowired
 	private PuestoEstudioRepository per;
+	
+	private Logger log = Logger.getLogger(EstudianteHacerDescansoService.class.getName());
+
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
@@ -46,7 +50,7 @@ public class PuestoEstudioService implements PuestoEstudioRepository{
 	}
 
 	@Override
-	public void deleteAllByIdInBatch(Iterable<PuestoEstudio_PK> ids) {
+	public void deleteAllByIdInBatch(Iterable<Long> ids) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -57,23 +61,6 @@ public class PuestoEstudioService implements PuestoEstudioRepository{
 		
 	}
 
-	@Override
-	public PuestoEstudio getOne(PuestoEstudio_PK id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public PuestoEstudio getById(PuestoEstudio_PK id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public PuestoEstudio getReferenceById(PuestoEstudio_PK id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public <S extends PuestoEstudio> List<S> findAll(Example<S> example) {
@@ -100,7 +87,7 @@ public class PuestoEstudioService implements PuestoEstudioRepository{
 	}
 
 	@Override
-	public List<PuestoEstudio> findAllById(Iterable<PuestoEstudio_PK> ids) {
+	public List<PuestoEstudio> findAllById(Iterable<Long> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -111,28 +98,12 @@ public class PuestoEstudioService implements PuestoEstudioRepository{
 		return per.save(entity);
 	}
 
-	@Override
-	public Optional<PuestoEstudio> findById(PuestoEstudio_PK id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
 
-	@Override
-	public boolean existsById(PuestoEstudio_PK id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
 		return per.count();
-	}
-
-	@Override
-	public void deleteById(PuestoEstudio_PK id) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -142,7 +113,7 @@ public class PuestoEstudioService implements PuestoEstudioRepository{
 	}
 
 	@Override
-	public void deleteAllById(Iterable<? extends PuestoEstudio_PK> ids) {
+	public void deleteAllById(Iterable<? extends Long> ids) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -200,6 +171,52 @@ public class PuestoEstudioService implements PuestoEstudioRepository{
 			Function<FetchableFluentQuery<S>, R> queryFunction) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public List<PuestoEstudio> getPuestosBySala(int sala){
+		List<PuestoEstudio> all = this.findAll();
+		List<PuestoEstudio> encontrado = new ArrayList<PuestoEstudio>();
+		for(PuestoEstudio p : all) {
+			if(p.getNum_sala() == sala) encontrado.add(p);
+		}
+		log.info("Se han encontrado " +encontrado.size() +" puestos en la sala " + sala);
+		return encontrado;
+	}
+
+	@Override
+	public PuestoEstudio getOne(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PuestoEstudio getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PuestoEstudio getReferenceById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<PuestoEstudio> findById(Long id) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
+
+	@Override
+	public boolean existsById(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

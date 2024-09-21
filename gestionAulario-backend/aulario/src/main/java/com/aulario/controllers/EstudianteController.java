@@ -32,6 +32,13 @@ public class EstudianteController {
 		return ResponseEntity.ok(es.findAll());
 	}
 	
+	
+	// recupera un estudiante dado su nie
+	@GetMapping("/find-by-nie/{nie}")
+	private ResponseEntity<List<Estudiante>> getEstudianteByFilters(@PathVariable String nie){
+		return ResponseEntity.ok(es.findByNie(nie));
+	}
+	
 	// añade un estudiante
 	@PostMapping
 	private ResponseEntity<Estudiante> addEstudiante(@RequestBody Estudiante e){
@@ -45,9 +52,9 @@ public class EstudianteController {
 	}
 	
 	// elimina un estudiante dado su NIE
-	@DeleteMapping(value="delete/{Nie}")
-	private ResponseEntity<Boolean> deleteEstudiante(@PathVariable String Nie){
-		es.deleteById(Nie);
-		return ResponseEntity.ok(!(es.findById(Nie)!=null));
+	@DeleteMapping(value="delete/{nie}")
+	private ResponseEntity<Boolean> deleteEstudiante(@PathVariable String nie){
+		es.deleteById(nie);
+		return ResponseEntity.ok(!(es.findById(nie)!=null));
 	}
 }

@@ -52,7 +52,7 @@ public class EstudianteHacerDescansoController {
 		int index;
 		for(index = 0; index < all.size(); index++) {
 			System.out.print(all.get(index).getHora_entrada());
-			if(all.get(index).getHora_entrada() == null) {
+			if(all.get(index).getHora_entrada().equalsIgnoreCase("No finalizado")) {
 				log.info("El estudiante con NIE " + nie + " tiene un descanso sin terminar");
 				all.get(index).setHora_entrada("Sin terminar");
 				byNie.add(all.get(index));

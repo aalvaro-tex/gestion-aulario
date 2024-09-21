@@ -9,15 +9,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="PUESTO_ESTUDIO")
-@IdClass(PuestoEstudio_PK.class)
 public class PuestoEstudio {
 
-	// PK compuesta
+	// PK 
 	@Id
-	private Long num_puesto;
-	@Id
-	private Long num_sala;
+	private Long id;
 	// Atributos
+	private Long num_puesto;
+	private Long num_sala;
 	private boolean tiene_enchufe;
 	private boolean tiene_ventana;
 	public PuestoEstudio(Long num_puesto, Long num_sala, boolean tiene_enchufe, boolean tiene_ventana) {

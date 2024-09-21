@@ -33,12 +33,18 @@ public class PuestoEstudioController {
 		return ResponseEntity.ok(pes.findAll());
 	}
 	
+	// recupera los puestos dada una sala
+	@GetMapping("/find-by-sala/{sala}")
+	private ResponseEntity<List<PuestoEstudio>> getPuestosBySala(@PathVariable int sala){
+		return ResponseEntity.ok(pes.getPuestosBySala(sala));
+	}
+	
 	// añade un puesto de estudio
 	@PostMapping
 	private ResponseEntity<PuestoEstudio> addPuestoEstudio(@RequestBody PuestoEstudio pe){
 		try {
 			PuestoEstudio pe_guardado = pes.save(pe);
-			return ResponseEntity.created(new URI("/descansos/"+pe_guardado.getNum_sala()+pe_guardado.getNum_puesto())).body(pe_guardado);
+			return ResponseEntity.created(new URI("/puestos-estudio/"+pe_guardado.getNum_sala()+":"+pe_guardado.getNum_puesto())).body(pe_guardado);
 		}catch(Exception ex) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); 
 		}
@@ -46,7 +52,7 @@ public class PuestoEstudioController {
 	
 	// elimina un puesto de estudio 
 	@DeleteMapping(value="delete/{pk}")
-	private ResponseEntity<Boolean> deletePuestoEstudio(@PathVariable PuestoEstudio_PK pk){
+	private ResponseEntity<Boolean> deletePuestoEstudio(@PathVariable Long pk){
 		pes.deleteById(pk);
 		return ResponseEntity.ok(!(pes.findById(pk)!=null));
 	}

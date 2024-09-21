@@ -1,8 +1,10 @@
 package com.aulario.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -20,6 +22,8 @@ public class DescansoService implements DescansoRepository{
 	
 	@Autowired
 	private DescansoRepository dr;
+	
+	private Logger log = Logger.getLogger(DescansoService.class.getName());
 
 	@Override
 	public void flush() {
@@ -96,6 +100,7 @@ public class DescansoService implements DescansoRepository{
 	@Override
 	public List<Descanso> findAll() {
 		// TODO Auto-generated method stub
+		log.info("Hay " + this.count() + " tipos de descanso registrados");
 		return dr.findAll();
 	}
 
@@ -132,7 +137,7 @@ public class DescansoService implements DescansoRepository{
 	@Override
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		
+		dr.deleteById(id);
 	}
 
 	@Override
@@ -199,6 +204,34 @@ public class DescansoService implements DescansoRepository{
 	public <S extends Descanso, R> R findBy(Example<S> example, Function<FetchableFluentQuery<S>, R> queryFunction) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Descanso findByNombre(String nombre) {
+		Descanso d = null;
+		List<Descanso> all = this.findAll();
+		for(Descanso des : all) {
+			if(des.getNombre().equalsIgnoreCase(nombre)) d = des;
+		}
+		return d;
+	}
+	
+	public void deleteByName(String nombre) {
+		Long id = this.findByNombre(nombre).getId();
+		log.info("Se va a eliminar el descanso con nombre: "+nombre);
+		this.deleteById(id);
+	}
+	
+	public boolean editDuracion(String nombre, int duracion) {
+		Descanso d = this.findByNombre(nombre.toUpperCase());
+		try {
+		d.setDuracion(duracion);
+		this.save(d);
+		return true;
+		} catch(Exception e) {
+			log.info("No se ha encontrado el descanso con nombre "+ nombre);
+			return false;
+		}
+
 	}
 
 }

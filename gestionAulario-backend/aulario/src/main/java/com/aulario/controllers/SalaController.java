@@ -37,7 +37,7 @@ public class SalaController {
 	private ResponseEntity<Sala> addSala(@RequestBody Sala s){
 		try {
 			Sala s_guardado = ss.save(s);
-			return ResponseEntity.created(new URI("/descansos/"+s_guardado.getNum_sala())).body(s_guardado);
+			return ResponseEntity.created(new URI("/salas/"+s_guardado.getNum_sala())).body(s_guardado);
 		}catch(Exception ex) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); 
 		}
